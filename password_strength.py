@@ -1,7 +1,15 @@
 import sys
 import string
+import re
 
-
+BLACKLISTED_FORMATS = [
+    r'.*\d{2}-\d{2}-\d{2}.*',
+    r'.*\d{3}-\d{3}.*',
+    r'.*\d{6}.*',
+    r'.*(19|20)\d{2}.*',
+    r'.*[0-3]\d[-/\.]*[01]\d.*',
+    r'.*[01]\d[-/\.]*[0-3]\d.*',
+]
 BLACKLISTED_WORDS_FILE_NAMES = {
     'WORLD_CITIES':         'world_city_names.txt',
     'US_CITIES':            'us_city_names.txt',
@@ -71,19 +79,23 @@ def is_not_blacklisted(password, blacklisted_words):
     return True
 
 
-def has_not_formats():
+def has_not_formats(password, blacklisted_formats):
     # prohibition of passwords that match the format of calendar dates,
     # license plate numbers, telephone numbers, or other common numbers
-    raise NotImplemented
+    patterns = [re.compile(blacklisted_format) for blacklisted_format in blacklisted_formats]
+    for pattern in patterns:
+        if re.search(pattern, password):
+            return False
+    return True
 
 
-def get_password_content(password, blacklisted_words):
+def get_password_content(password, blacklisted_words, blacklisted_formats):
     password_checklist = [
         is_case_sensitive(password),
         has_digits(password),
         has_special_chars(password),
         is_not_blacklisted(password, blacklisted_words),
-        # has_not_formats()
+        has_not_formats(password, blacklisted_formats),
     ]
     return password_checklist.count(True) / len(password_checklist)
 
@@ -113,7 +125,7 @@ if __name__ == '__main__':
     password = input('Введите пароль:\n>')
     if is_not_wellknown_password(password, well_known_passwords):
         password_strength = int(10 * get_password_strength(
-            get_password_content(password, blacklisted_words),
+            get_password_content(password, blacklisted_words, BLACKLISTED_FORMATS),
             get_password_length(password)
         ))
         print('The strongest of your password is {level} out from 10'.format(
