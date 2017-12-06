@@ -10,6 +10,7 @@ BLACKLISTED_FORMATS = [
     r'.*[0-3]\d[-/\.]*[01]\d.*',
     r'.*[01]\d[-/\.]*[0-3]\d.*',
 ]
+
 BLACKLISTED_WORDS_FILE_NAMES = {
     'WORLD_CITIES':         'world_city_names.txt',
     'US_CITIES':            'us_city_names.txt',
@@ -19,6 +20,7 @@ BLACKLISTED_WORDS_FILE_NAMES = {
     'PERSONAL_DATA':        'personal.txt',
     'COMPANY_DATA':         'company.txt',
 }
+
 WELLKNOWN_PASSWORDS_FILENAME = 'wellknown_passwords.txt'
 
 
