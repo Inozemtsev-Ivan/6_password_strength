@@ -124,7 +124,7 @@ if __name__ == '__main__':
         well_known_passwords = load_blacklisted_words(WELLKNOWN_PASSWORDS_FILENAME)
     except FileNotFoundError as exception:
         sys.exit(exception)
-    password = input('Введите пароль:\n>')
+    password = input('Input your password:\n>')
     if is_not_wellknown_password(password, well_known_passwords):
         password_strength = int(10 * get_password_strength(
             get_password_content(password, blacklisted_words, BLACKLISTED_FORMATS),
