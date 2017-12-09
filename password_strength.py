@@ -26,17 +26,8 @@ WELLKNOWN_PASSWORDS_FILENAME = 'wellknown_passwords.txt'
 
 def is_case_sensitive(password):
     # the use of both upper-case and lower-case letters (case sensitivity)
-    def has_lowercase(password):
-        for char in string.ascii_lowercase:
-            if char in password:
-                return True
-
-    def has_uppercase(password):
-        for char in string.ascii_uppercase:
-            if char in password:
-                return True
-
-    return has_lowercase(password) and has_uppercase(password)
+    return all([set(string.ascii_lowercase).intersection(set(password)),
+                set(string.ascii_uppercase).intersection(set(password))])
 
 
 def has_digits(password):
