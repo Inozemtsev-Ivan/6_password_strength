@@ -26,7 +26,7 @@ The strongest of your password is 10 out from 10
 Execution in Windows or Linux environments id the same except you must specify `python` instead of `python3` depends on system configuration.  
 
 # How to adapt the code to your needs
-You can enrich set of well-known passwords by adding new ones to `wellknown_passwords.txt` If you need to introduce new set of blacklisted words, for instance, localize them, just put new file into work directory and address name of the file in `BLACKLISTED_WORDS_FILE_NAMES` parameters dictionary. You can also include new banned formats: to do so, please specify new formats into `BLACKLISTED_FORMATS` parameters dictionary in standard regular expression way. Both dictionaries are located in main executable file: `password_strength.py`.
+You can enrich set of well-known passwords by adding new ones to `wellknown_passwords.txt` If you need to introduce new set of blacklisted words, for instance, localize them, just put new file into work directory and address name of the file in `BLACKLISTED_WORDS_FILES` parameters dictionary. You can also include new banned formats: to do so, please specify new formats into `BLACKLISTED_FORMATS` parameters dictionary in standard regular expression way. Both dictionaries are located in main executable file: `password_strength.py`.
 
 # Project Goals
 
